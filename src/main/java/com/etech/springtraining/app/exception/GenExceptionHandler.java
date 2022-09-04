@@ -16,6 +16,7 @@ import java.util.Map;
 public class GenExceptionHandler   {
 
 
+    // test branch
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<GenExceptionResponse> methodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest webRequest){
 
