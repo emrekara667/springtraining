@@ -1,7 +1,9 @@
 package com.etech.springtraining.app.controller;
 
 import com.etech.springtraining.app.dto.CustomerDto;
+import com.etech.springtraining.app.dto.CustomerFullSaveRequestDto;
 import com.etech.springtraining.app.dto.CustomerSaveRequestDto;
+import com.etech.springtraining.app.entity.Customer;
 import com.etech.springtraining.app.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,8 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping()
-    public ResponseEntity save(@Valid @RequestBody CustomerSaveRequestDto customerSaveRequestDto){
-        CustomerDto customerDto = customerService.save(customerSaveRequestDto);
+    public ResponseEntity save(@Valid @RequestBody CustomerFullSaveRequestDto customerFullSaveRequestDto){
+        CustomerDto customerDto = customerService.save(customerFullSaveRequestDto);
 
         return ResponseEntity.ok(customerDto);
     }
@@ -30,9 +32,4 @@ public class CustomerController {
 
         return ResponseEntity.ok(customerDtoList);
     }
-
-
-
-
-
 }

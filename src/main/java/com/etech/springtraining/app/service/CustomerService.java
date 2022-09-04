@@ -3,6 +3,7 @@ package com.etech.springtraining.app.service;
 import com.etech.springtraining.app.converter.CustomerMapper;
 import com.etech.springtraining.app.dao.CustomerDao;
 import com.etech.springtraining.app.dto.CustomerDto;
+import com.etech.springtraining.app.dto.CustomerFullSaveRequestDto;
 import com.etech.springtraining.app.dto.CustomerSaveRequestDto;
 import com.etech.springtraining.app.entity.Customer;
 import com.etech.springtraining.app.exception.NotFoundException;
@@ -19,7 +20,7 @@ public class CustomerService {
     private final CustomerDao customerDao;
 
 
-    public CustomerDto save(CustomerSaveRequestDto customerSaveRequestDto) {
+    public CustomerDto save(CustomerFullSaveRequestDto customerFullSaveRequestDto) {
 
      /*   if(customerSaveRequestDto.getName() == null){
             throw new NotFoundException("not found");
@@ -28,7 +29,7 @@ public class CustomerService {
             throw new RuntimeException("run time");
         }*/
 
-        Customer customer = CustomerMapper.INSTANCE.covertToCustomer(customerSaveRequestDto);
+        Customer customer = CustomerMapper.INSTANCE.convertToCustomer(customerFullSaveRequestDto);
 
         customer = customerDao.save(customer);
 
@@ -41,4 +42,5 @@ public class CustomerService {
 
         return CustomerMapper.INSTANCE.convertToCustomerDtoList(customerList);
     }
+
 }
