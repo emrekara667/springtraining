@@ -8,6 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CustomerDao extends JpaRepository<Customer, Long> {
-
-
+    boolean existsByName(String name);
 }

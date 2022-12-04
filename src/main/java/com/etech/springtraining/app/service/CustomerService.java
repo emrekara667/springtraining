@@ -4,7 +4,9 @@ import com.etech.springtraining.app.converter.CustomerMapper;
 import com.etech.springtraining.app.dao.CustomerDao;
 import com.etech.springtraining.app.dto.CustomerDto;
 import com.etech.springtraining.app.dto.CustomerFullSaveRequestDto;
+import com.etech.springtraining.app.dto.CustomerSaveRequestDto;
 import com.etech.springtraining.app.entity.Customer;
+import com.etech.springtraining.app.exception.BadRequestException;
 import com.etech.springtraining.app.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,7 @@ public class CustomerService {
     private final CustomerDao customerDao;
 
 
-    public CustomerDto save(CustomerFullSaveRequestDto customerFullSaveRequestDto) {
+    public CustomerDto save(CustomerSaveRequestDto customerSaveRequestDto) {
 
      /*   if(customerSaveRequestDto.getName() == null){
             throw new NotFoundException("not found");
@@ -30,7 +32,11 @@ public class CustomerService {
             throw new RuntimeException("run time");
         }*/
 
-        Customer customer = CustomerMapper.INSTANCE.convertToCustomer(customerFullSaveRequestDto);
+        Customer customer = CustomerMapper.INSTANCE.covertToCustomer(customerSaveRequestDto);
+
+        if(customerDao.existsByName(customerSaveRequestDto.getName())){
+            throw new BadRequestException("Entity name already exist");
+        }
 
         customer = customerDao.save(customer);
 
