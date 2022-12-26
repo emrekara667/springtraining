@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfiguration {
     @Bean
-    public FilterRegistrationBean<ActuatorFilter> registrationBean(){
+    public FilterRegistrationBean<ActuatorFilter> registrationBean() {
         FilterRegistrationBean<ActuatorFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new ActuatorFilter());
         registrationBean.addUrlPatterns("/actuator/*");
@@ -15,7 +15,7 @@ public class FilterConfiguration {
     }
 
     @Bean
-    public FilterRegistrationBean<MessageFilter> registrationBeanTwo(){
+    public FilterRegistrationBean<MessageFilter> registrationBeanTwo() {
         FilterRegistrationBean<MessageFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new MessageFilter());
         registrationBean.addUrlPatterns("/actuator/*");
